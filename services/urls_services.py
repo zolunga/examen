@@ -6,6 +6,6 @@ urlpatterns = [
     path('index/', views.indexView.as_view(), name='index'),
     path('register/', views.registerView.as_view(), name='form_register'),
     path('register/add', views.addUser.as_view(), name='add'),
-    path('register/delete/<id: int>', views.addUser.as_view(), name='delete'),
+    path('register/delete/<int:id>', views.deleteUser.as_view(), name='delete'),
 ]
 

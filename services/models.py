@@ -118,6 +118,17 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Extras(models.Model):
+    extra_id = models.AutoField(primary_key=True)
+    email = models.CharField(unique=True, max_length=50)
+    escuela = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'extras'
+
+
 class Usuarios(models.Model):
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(unique=True, max_length=50)
@@ -126,17 +137,6 @@ class Usuarios(models.Model):
     class Meta:
         managed = False
         db_table = 'usuarios'
-
-
-class Extras(models.Model):
-    extra_id = models.AutoField(primary_key=True)
-    email = models.CharField(unique=True, max_length=50)
-    escuela = models.CharField(max_length=50)
-    direccion = models.CharField(max_length=50)
-    user = models.OneToOneField(Usuarios, on_delete=models.CASCADE, primary_key=True)
-    class Meta:
-        managed = False
-        db_table = 'extras'
 
 
 class UsuariosExtras(models.Model):

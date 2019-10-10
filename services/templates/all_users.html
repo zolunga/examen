@@ -5,6 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-
+<table>
+    <script>
+        console.log({{ users|safe }})
+    </script>
+    {% for user in users %}
+        <tr>
+            <td>
+                <p>{{ user.user_id }}</p>
+            </td>
+            <td>
+                <p>{{ user.username }}</p>
+            </td>
+            <td>
+                <a href="{% url 'services:delete' id=user.user_id%}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
