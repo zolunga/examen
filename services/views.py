@@ -37,7 +37,7 @@ class addUser(DetailView):
             extra.save()
             user.save()
         except Exception as e:
-            print('Ya existe un Usuario registrado con ese email o username')
+            print('Ya existe un Usuario registrado con ese email o username', e)
             return redirect('services:form_register')
 
         return redirect('services:index')
@@ -56,14 +56,11 @@ class deleteUser(DetailView):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Usuarios
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['user_id', 'username']
 
 
-# ViewSets define the view behavior.
 class UserViewSet(viewsets. ModelViewSet):
     queryset = Usuarios.objects.all()
     serializer_class = UserSerializer
-
-# Routers provide an easy way of automatically determining the URL conf.
 
 
