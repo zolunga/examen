@@ -6,9 +6,6 @@
 </head>
 <body>
 <table>
-    <script>
-        console.log({{ users|safe }})
-    </script>
     {% for user in users %}
         <tr>
             <td>
@@ -23,5 +20,6 @@
         </tr>
     {% endfor %}
 </table>
+<a href="{% url 'services:form_register' %}">Add</a>
 </body>
 </html>
