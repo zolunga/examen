@@ -1,0 +1,28 @@
+createDB examenAlan
+
+CREATE TABLE usuarios(
+   user_id serial PRIMARY KEY,
+   username VARCHAR (50) UNIQUE NOT NULL,
+   password VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE extras(
+   extra_id serial PRIMARY KEY,
+   email VARCHAR (50) UNIQUE NOT NULL,
+   escuela VARCHAR (50) NOT NULL,
+   direccion VARCHAR (50) NOT NULL
+
+);
+
+
+CREATE TABLE usuarios_extras (
+  user_id integer NOT NULL,
+  extra_id integer NOT NULL,
+  PRIMARY KEY (user_id, extra_id),
+  CONSTRAINT user_extra_id_fkeyA FOREIGN KEY (extra_id)
+      REFERENCES extras (extra_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT user_extra_id_fkeyB FOREIGN KEY (user_id)
+      REFERENCES usuarios (user_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
